@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Reparación de joysticks PS5 y solución de drift en CABA, Buenos Aires. Diagnóstico, cambio de stick o potenciómetro y prueba final. Pedí tu turno por WhatsApp." />
+  <title>DriftZero | Reparación de Joysticks PS5 y Drift en CABA, Buenos Aires</title>
+  <link rel="canonical" href="https://driftzero9.github.io/" />
+
+  <meta property="og:type" content="business.business" />
+  <meta property="og:title" content="DriftZero | Reparación de Joysticks PS5 y Drift" />
+  <meta property="og:description" content="Reparación de joysticks PS5 y solución de drift en CABA, Buenos Aires. Pedí tu turno por WhatsApp." />
+  <meta property="og:url" content="https://driftzero9.github.io/" />
+  <meta property="og:locale" content="es_AR" />
+  <meta name="twitter:card" content="summary" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ElectronicsStore",
+    "name": "DriftZero",
+    "description": "Reparación de joysticks PS5 y solución de drift.",
+    "areaServed": "CABA, Buenos Aires, Argentina",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "CABA",
+      "addressCountry": "AR"
+    },
+    "telephone": "+5491141637545",
+    "email": "tomugonza@gmail.com",
+    "url": "https://driftzero9.github.io/",
+    "priceRange": "$$",
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "name": "Reparación de drift - Cambio de stick",
+        "price": "70000",
+        "priceCurrency": "ARS"
+      },
+      {
+        "@type": "Offer",
+        "name": "Reparación de drift - Cambio de potenciómetro",
+        "price": "50000",
+        "priceCurrency": "ARS"
+      }
+    ]
+  }
+  </script>
+</head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080b12;
+      --bg-2: #0d111a;
+      --panel: #111722;
+      --panel-2: #151c28;
+      --panel-3: #0c121c;
+      --text: #f5f7fb;
+      --muted: #a4adbd;
+      --line: rgba(255,255,255,.10);
+      --line-strong: rgba(255,255,255,.16);
+      --blue: #36a5ff;
+      --blue-2: #1477e8;
+      --cyan: #62d7ff;
+      --pink: #ff3d94;
+      --purple: #865dff;
+      --green: #25d366;
+      --shadow: 0 28px 70px rgba(0,0,0,.40);
+      --radius: 24px;
+      --container: 1140px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(20,119,232,.17), transparent 28%),
+        radial-gradient(circle at 88% 16%, rgba(255,61,148,.11), transparent 24%),
+        linear-gradient(180deg, #080b12 0%, #0b0f17 48%, #080b12 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 72%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(var(--container), calc(100% - 36px)); margin-inline: auto; }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(8,11,18,.82);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.03em; }
+    .brand-mark {
+      width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(145deg, #1e2736, #0c111a);
+      border: 1px solid rgba(98,215,255,.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 8px 24px rgba(20,119,232,.14);
+      color: var(--cyan); font-size: 20px;
+    }
+    .brand small { display: block; color: #778295; font-weight: 600; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; margin-top: -2px; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 700; color: #b5bfce; }
+    .nav-links a { transition: color .2s ease, transform .2s ease; }
+    .nav-links a:hover { color: white; transform: translateY(-1px); }
+    .nav-cta { padding: 11px 16px; border-radius: 12px; background: linear-gradient(135deg, var(--blue), var(--purple)); color: white !important; box-shadow: 0 10px 28px rgba(54,165,255,.20); }
+
+    /* SHARED */
+    section { padding: 96px 0; position: relative; }
+    .section-head { width: min(760px, 100%); margin: 0 auto 34px; text-align: center; }
+    .section-kicker { display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 999px; border: 1px solid rgba(98,215,255,.16); background: rgba(54,165,255,.08); color: #90ddff; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .section-kicker::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--blue)); box-shadow: 0 0 0 4px rgba(98,215,255,.08); }
+    .section-head h2 { margin: 14px 0 10px; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; letter-spacing: -.045em; }
+    .section-head p { margin: 0 auto; color: var(--muted); max-width: 680px; }
+
+    .btn { min-height: 52px; padding: 0 18px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; font-size: 14px; font-weight: 900; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: linear-gradient(135deg, var(--blue-2), var(--purple)); box-shadow: 0 14px 32px rgba(20,119,232,.25); }
+    .btn-secondary { color: white; background: rgba(255,255,255,.04); border-color: var(--line-strong); }
+    .btn-whatsapp { color: #06170b; background: var(--green); box-shadow: 0 12px 28px rgba(37,211,102,.20); }
+
+    /* HERO */
+    .hero { min-height: calc(100svh - 76px); padding: 42px 0 34px; overflow: hidden; display:flex; align-items:center; }
+    .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:48px; align-items:center; }
+    .hero-copy { position:relative; z-index:2; text-align:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(134,93,255,.10); border:1px solid rgba(134,93,255,.20); color:#c7b8ff; font-size:12px; font-weight:900; }
+    .eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--purple)); box-shadow:0 0 0 4px rgba(255,61,148,.09); }
+    h1 { margin:18px auto 16px; max-width:700px; font-size:clamp(43px,5.5vw,72px); line-height:.98; letter-spacing:-.065em; }
+    .gradient-text { background:linear-gradient(100deg,#fff 20%,#9adfff 48%,#b796ff 77%,#ff76b3); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero-copy > p { margin:0 auto; max-width:650px; color:#a9b4c4; font-size:17px; }
+    .hero-copy > p strong { color:#fff; }
+    .hero-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:24px; }
+    .trust-row { display:flex; justify-content:center; flex-wrap:wrap; gap:18px; margin-top:20px; }
+    .trust-item { display:inline-flex; align-items:center; gap:8px; color:#94a0b2; font-size:12px; font-weight:800; }
+    .trust-item b { width:21px; height:21px; display:grid; place-items:center; border-radius:50%; background:rgba(37,211,102,.12); color:#61ed91; border:1px solid rgba(37,211,102,.18); font-size:11px; }
+    .hero-visual { position:relative; min-height:500px; display:grid; place-items:center; }
+    .controller-photo-wrap { position:relative; width:min(520px,100%); display:grid; place-items:center; }
+    .controller-photo-wrap::before { content:""; position:absolute; inset:8% 5%; border-radius:42%; background:radial-gradient(circle,rgba(54,165,255,.25),transparent 62%); filter:blur(28px); }
+    .controller-art { position:relative; width:min(500px,100%); height:auto; filter:drop-shadow(0 30px 55px rgba(0,0,0,.55)) drop-shadow(0 0 45px rgba(54,165,255,.14)); transform:rotate(-2deg); }
+    .status-card { position:absolute; right:-4px; top:8%; display:flex; gap:10px; align-items:center; padding:12px 14px; border:1px solid rgba(255,255,255,.10); border-radius:15px; background:rgba(12,18,28,.94); backdrop-filter:blur(12px); box-shadow:0 18px 35px rgba(0,0,0,.30); }
+    .status-dot { width:9px;height:9px;border-radius:50%;background:#25d366;box-shadow:0 0 0 5px rgba(37,211,102,.09),0 0 16px rgba(37,211,102,.55); }
+    .status-card strong,.status-card small { display:block }.status-card strong{font-size:11px}.status-card small{font-size:9px;color:#778498;margin-top:2px}
+    .float-badge { position:absolute; left:-6px; bottom:8%; padding:12px 14px; border-radius:15px; background:rgba(17,23,34,.94); border:1px solid rgba(54,165,255,.22); box-shadow:0 18px 35px rgba(0,0,0,.28); font-size:12px; font-weight:900; color:#e8edf6; }
+    .float-badge span { color:#79ddff; }
+    .visual-glow { position:absolute; border-radius:50%; pointer-events:none; filter:blur(10px); }
+    .glow-blue { width:230px;height:230px;background:rgba(54,165,255,.12);right:2%;top:8%; }
+    .glow-pink { width:190px;height:190px;background:rgba(255,61,148,.10);left:5%;bottom:5%; }
+
+    /* SERVICE */
+    .services { background: linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,.025)); border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { min-height: 240px; padding: 28px; display: flex; flex-direction: column; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018)); box-shadow: 0 14px 35px rgba(0,0,0,.18); }
+    .icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 15px; margin-bottom: 18px; color: #bdeaff; background: linear-gradient(145deg, rgba(54,165,255,.18), rgba(134,93,255,.14)); border: 1px solid rgba(98,215,255,.14); font-weight: 900; }
+    .card h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .gallery-card { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--panel); box-shadow: 0 16px 38px rgba(0,0,0,.22); }
+    .gallery-media { position: relative; overflow: hidden; }
+    .gallery-media img { width: 100%; height: 420px; object-fit: cover; }
+    .gallery-media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 34%; background: linear-gradient(transparent, rgba(8,11,18,.74)); pointer-events: none; }
+    .gallery-badge { position: absolute; left: 16px; bottom: 16px; z-index: 1; padding: 9px 11px; border-radius: 12px; background: rgba(8,11,18,.80); border: 1px solid rgba(255,255,255,.12); font-size: 11px; font-weight: 900; }
+    .gallery-caption { padding: 18px 20px 20px; text-align: center; }
+    .gallery-caption strong { display: block; margin-bottom: 4px; font-size: 16px; }
+    .gallery-caption span { color: var(--muted); font-size: 13px; }
+    .mini-note { margin: 16px auto 0; max-width: 800px; text-align: center; color: #798598; font-size: 12px; }
+
+    /* PRICING */
+    .pricing { background:#070a10; border-top:1px solid rgba(255,255,255,.05); border-bottom:1px solid rgba(255,255,255,.05); overflow:hidden; }
+    .pricing::before { content:""; position:absolute; width:580px;height:580px;border-radius:50%;right:-250px;top:-250px;background:radial-gradient(circle,rgba(54,165,255,.14),transparent 65%); }
+    .price-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; max-width:920px; margin:0 auto; align-items:stretch; }
+    .price-card { position:relative; min-width:0; min-height:430px; padding:30px; border-radius:26px; border:1px solid rgba(255,255,255,.10); background:linear-gradient(155deg,rgba(54,165,255,.09),rgba(17,23,34,.96)); box-shadow:0 18px 45px rgba(0,0,0,.28); display:flex; flex-direction:column; }
+    .price-card.pot { background:linear-gradient(155deg,rgba(255,61,148,.08),rgba(17,23,34,.96)); }
+    .price-card.stick { border-color:rgba(54,165,255,.25); }
+    .tag { display:inline-flex; align-self:flex-start; padding:7px 10px; border-radius:999px; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.10); color:#a9dcff; font-size:10px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; }
+    .pot .tag { color:#ff9bc8; }
+    .price-card h3 { margin:20px 0 5px; font-size:21px; line-height:1.15; }
+    .price { font-size:clamp(42px,5vw,58px); line-height:1; font-weight:900; letter-spacing:-.06em; margin:0 0 20px; white-space:nowrap; }
+    .price small { font-size:11px; color:#758196; letter-spacing:0; font-weight:800; }
+    .price-list { list-style:none; padding:0; margin:0; display:grid; gap:11px; color:#b7c0ce; font-size:13px; }
+    .price-list li { display:flex; align-items:flex-start; gap:9px; }
+    .price-list li::before { content:"✓"; color:#61ddff; font-weight:900; flex:0 0 auto; }
+    .price-cta { margin-top:auto; padding-top:22px; }
+    .price-cta .btn { width:100%; }
+    .price-note { margin:20px auto 0; color:#707c8e; font-size:12px; text-align:center; max-width:720px; }
+
+    /* TURNO */
+    .turno-grid { display:grid; grid-template-columns: 0.85fr 1.15fr; gap:22px; align-items:stretch; }
+    .contact-box, .form-card { padding:34px; border-radius:26px; border:1px solid rgba(255,255,255,.10); box-shadow:0 18px 45px rgba(0,0,0,.26); }
+    .contact-box { background:linear-gradient(155deg,rgba(134,93,255,.10),rgba(17,23,34,.96)); display:flex; flex-direction:column; }
+    .contact-box h3 { margin:14px 0 8px; font-size:26px; letter-spacing:-.03em; }
+    .contact-box > p { margin:0 0 26px; color:var(--muted); font-size:14px; }
+    .contact-list { display:grid; gap:14px; margin-top:auto; }
+    .contact-item { display:flex; align-items:center; gap:13px; padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); }
+    .contact-icon { width:38px; height:38px; flex:0 0 auto; display:grid; place-items:center; border-radius:11px; font-size:16px; background:linear-gradient(145deg,rgba(54,165,255,.18),rgba(134,93,255,.14)); border:1px solid rgba(98,215,255,.14); }
+    .contact-item strong { display:block; font-size:14px; }
+    .contact-item small { display:block; color:#8b96a8; font-size:11.5px; margin-top:2px; }
+
+    .form-card { background:linear-gradient(155deg,rgba(54,165,255,.08),rgba(17,23,34,.96)); }
+    #turnForm { display:grid; gap:16px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    #turnForm label { display:grid; gap:8px; font-size:12.5px; font-weight:800; color:#c3cbda; }
+    #turnForm input, #turnForm select, #turnForm textarea {
+      width:100%; padding:13px 14px; border-radius:12px; color:var(--text);
+      background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.12);
+      outline:none; transition:border-color .2s ease, background .2s ease;
+    }
+    #turnForm input::placeholder, #turnForm textarea::placeholder { color:#5f6a7d; }
+    #turnForm input:focus, #turnForm select:focus, #turnForm textarea:focus { border-color:var(--cyan); background:rgba(98,215,255,.06); }
+    #turnForm select { appearance:none; background-image:linear-gradient(45deg, transparent 50%, #7c8798 50%), linear-gradient(135deg, #7c8798 50%, transparent 50%); background-position:calc(100% - 18px) calc(50% - 3px), calc(100% - 13px) calc(50% - 3px); background-size:5px 5px, 5px 5px; background-repeat:no-repeat; }
+    #turnForm option { background:#111722; color:var(--text); }
+    #turnForm textarea { min-height:96px; resize:vertical; font-family:inherit; }
+    .form-note { margin:0; color:#7c879a; font-size:12px; }
+    .form-success { display:none; padding:12px 14px; border-radius:12px; background:rgba(37,211,102,.10); border:1px solid rgba(37,211,102,.24); color:#7fe8a4; font-size:13px; font-weight:800; }
+    #turnForm .btn { margin-top:2px; }
+
+    /* FAQ */
+    .faq { width: min(880px, 100%); margin: 0 auto; display: grid; gap: 11px; }
+    details { border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.028); overflow: hidden; }
+    summary { list-style: none; cursor: pointer; padding: 19px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 14px; font-weight: 900; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255,255,255,.10); color: var(--cyan); flex: 0 0 auto; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 0; padding: 0 20px 20px; color: var(--muted); font-size: 13px; }
+
+    /* CTA / FOOTER */
+    .cta { padding-top: 28px; }
+    .cta-box { position: relative; overflow: hidden; padding: 38px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; border-radius: 28px; background: linear-gradient(135deg, rgba(54,165,255,.13), rgba(134,93,255,.10) 56%, rgba(255,61,148,.07)); border: 1px solid rgba(98,215,255,.18); }
+    .cta-box::after { content: "✕  ○  △  □"; position: absolute; right: 22px; top: 14px; color: rgba(255,255,255,.08); font-weight: 900; letter-spacing: 12px; font-size: 18px; }
+    .cta-box h2 { margin: 0 0 8px; font-size: clamp(27px, 4vw, 39px); line-height: 1.05; letter-spacing: -.045em; }
+    .cta-box p { margin: 0; color: var(--muted); }
+    footer { padding: 34px 0 52px; color: #697589; font-size: 11px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 15px; }
+    .footer-links a:hover { color: #dbe3ee; }
+    .whatsapp-fab { position: fixed; right: 19px; bottom: 19px; z-index: 90; width: 59px; height: 59px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: #04140a; font-size: 24px; box-shadow: 0 16px 32px rgba(37,211,102,.24); transition: transform .2s ease; }
+    .whatsapp-fab:hover { transform: translateY(-3px) scale(1.03); }
+
+    /* DRIFTZERO VISUALS */
+    .work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .work-card { position:relative; min-height:275px; padding:28px; border:1px solid var(--line); border-radius:24px; background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); box-shadow:0 16px 38px rgba(0,0,0,.20); overflow:hidden; }
+    .work-card.featured { border-color:rgba(134,93,255,.30); background:linear-gradient(155deg,rgba(134,93,255,.12),rgba(17,23,34,.94)); }
+    .work-card::after { content:""; position:absolute; width:120px;height:120px;border-radius:50%;right:-55px;bottom:-55px;background:radial-gradient(circle,rgba(54,165,255,.12),transparent 70%); }
+    .work-number { position:absolute; right:20px; top:18px; font-size:11px; font-weight:900; color:#465267; letter-spacing:.1em; }
+    .work-icon { width:52px;height:52px;display:grid;place-items:center;border-radius:16px;margin-bottom:20px;color:#bdeaff;background:linear-gradient(145deg,rgba(54,165,255,.18),rgba(134,93,255,.14));border:1px solid rgba(98,215,255,.14);font-weight:900;font-size:20px; }
+    .work-card h3 { margin:0 0 8px;font-size:20px; }.work-card p{margin:0;color:var(--muted);font-size:14px}
+    .work-banner { margin-top:20px; padding:22px 26px; border-radius:20px; border:1px solid rgba(255,61,148,.18); background:linear-gradient(100deg,rgba(255,61,148,.08),rgba(54,165,255,.08)); display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center; }
+    .work-banner span{font-size:11px;font-weight:900;letter-spacing:.12em;color:#ff78b4}.work-banner strong{font-size:18px}.work-banner small{color:#7f8a9c}
+
+    /* RESPONSIVE */
+    @media (max-width: 920px) {
+      .nav-links { display:none; }
+      .hero { min-height:calc(100svh - 68px); padding:24px 0 28px; }
+      .hero-grid { grid-template-columns:1fr; gap:18px; }
+      .hero-copy { order:1; }
+      .hero-visual { order:2; min-height:310px; }
+      .hero-copy > p { font-size:15px; max-width:620px; }
+      .hero-actions { margin-top:18px; }
+      .trust-row { margin-top:14px; gap:10px 15px; }
+      .controller-photo-wrap { width:min(410px,94vw); }
+      .status-card { right:-2px; top:2%; }
+      .float-badge { left:0; bottom:2%; }
+      .cards,.work-grid { grid-template-columns:1fr; }
+      .turno-grid { grid-template-columns:1fr; gap:18px; }
+      .contact-box, .form-card { padding:26px; min-height:auto; }
+    }
+    @media (max-width: 700px) {
+      .container { width:min(var(--container),calc(100% - 24px)); }
+      section { padding:68px 0; }
+      .nav-inner { min-height:68px; }
+      .brand-mark { width:40px;height:40px; }
+      .hero { min-height:calc(100svh - 68px); padding:22px 0 24px; }
+      h1 { font-size:clamp(39px,11vw,56px); margin:14px auto 12px; }
+      .eyebrow { font-size:10px; }
+      .hero-copy > p { font-size:14px; line-height:1.48; }
+      .hero-actions .btn { min-height:48px; padding:0 15px; font-size:13px; }
+      .trust-item { font-size:11px; }
+      .hero-visual { min-height:275px; }
+      .controller-photo-wrap { width:min(350px,92vw); }
+      .status-card { padding:9px 10px; right:0; }
+      .status-card strong { font-size:10px; }.status-card small{font-size:8px}
+      .float-badge { padding:9px 11px; font-size:10px; }
+      .price-grid { grid-template-columns:1fr; gap:14px; }
+      .price-card { min-height:0; padding:24px; }
+      .price { font-size:50px; }
+      .form-row { grid-template-columns:1fr; }
+      .cta-box { grid-template-columns:1fr; padding:28px; text-align:center; }
+      .cta-box .btn { width:100%; }
+      .gallery { grid-template-columns:1fr; }
+      .gallery-media img { height:300px; }
+    }
+    @media (max-height: 760px) and (max-width: 920px) {
+      .hero { padding-top:14px; padding-bottom:14px; }
+      h1 { font-size:40px; }
+      .hero-copy > p { font-size:13px; }
+      .hero-actions { margin-top:12px; }
+      .trust-row { margin-top:9px; }
+      .hero-visual { min-height:225px; }
+    }
+  </style>
+
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="DriftZero inicio">
+        <span class="brand-mark">◉</span>
+        <span>DriftZero<small>Reparación de joysticks</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#servicio">Servicio</a>
+        <a href="#fotos">Proceso</a>
+        <a href="#precios">Precios</a>
+        <a href="#turno">Turno</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20consultar%20por%20la%20reparaci%C3%B3n%20de%20mi%20joystick%20PS5." target="_blank" rel="noopener">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Especialistas en drift de PS5 · CABA, Buenos Aires</span>
+          <h1>Que tu joystick <span class="gradient-text">no juegue solo.</span></h1>
+          <p>¿El personaje camina, la cámara gira o el menú se mueve sin que toques nada? <strong>Eso es drift.</strong> Lo solucionamos con una reparación pensada para que vuelvas a jugar como corresponde. Bastante tiene el rival con vos como para que el mando también se ponga en contra.</p>
+          <div class="hero-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20pedir%20un%20turno%20para%20reparar%20mi%20joystick%20PS5." target="_blank" rel="noopener">💬 Pedir turno por WhatsApp</a>
+            <a class="btn btn-secondary" href="#precios">Ver precios</a>
+          </div>
+          <div class="trust-row">
+            <span class="trust-item"><b>✓</b> Diagnóstico</span>
+            <span class="trust-item"><b>✓</b> Reparación de drift</span>
+            <span class="trust-item"><b>✓</b> Prueba final</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Joystick PS5 blanco reparado por DriftZero">
+          <div class="visual-glow glow-blue"></div>
+          <div class="visual-glow glow-pink"></div>
+          <div class="controller-photo-wrap">
+            <svg class="controller-art" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un joystick PS5 en azul y blanco">
+              <defs>
+                <linearGradient id="shellGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4fb2ff"/>
+                  <stop offset="45%" stop-color="#3f7bf0"/>
+                  <stop offset="100%" stop-color="#5a3fd6"/>
+                </linearGradient>
+                <linearGradient id="panelGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f6f9fd"/>
+                  <stop offset="100%" stop-color="#d3ddec"/>
+                </linearGradient>
+                <linearGradient id="padGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#eef2f8"/>
+                  <stop offset="100%" stop-color="#c7d2e2"/>
+                </linearGradient>
+                <linearGradient id="stickGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#333e52"/>
+                  <stop offset="100%" stop-color="#171d29"/>
+                </linearGradient>
+                <radialGradient id="padGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#62d7ff" stop-opacity=".5"/>
+                  <stop offset="100%" stop-color="#62d7ff" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <path d="M60 150c8-46 52-70 110-70h180c58 0 102 24 110 70l16 66c9 40-18 78-58 78-24 0-45-13-56-33l-10-19c-8-15-24-24-41-24H209c-17 0-33 9-41 24l-10 19c-11 20-32 33-56 33-40 0-67-38-58-78l16-66z"
+                    fill="url(#shellGrad)" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+
+              <rect x="97" y="86" width="326" height="150" rx="58" fill="url(#panelGrad)"/>
+
+              <rect x="212" y="92" width="96" height="46" rx="12" fill="url(#padGrad)" stroke="rgba(255,255,255,.5)" stroke-width="1"/>
+              <g stroke="#62d7ff" stroke-width="2.5" stroke-linecap="round" opacity=".85">
+                <path d="M248 112a12 12 0 0 1 24 0"/>
+                <path d="M253 119h14"/>
+              </g>
+              <circle cx="204" cy="98" r="4" fill="#9aa6ba"/>
+              <circle cx="316" cy="98" r="4" fill="#9aa6ba"/>
+
+              <circle cx="196" cy="196" r="38" fill="url(#padGlow)"/>
+              <circle cx="196" cy="196" r="28" fill="url(#stickGrad)" stroke="rgba(54,165,255,.45)" stroke-width="2"/>
+              <circle cx="196" cy="196" r="10" fill="#0c111a"/>
+
+              <circle cx="324" cy="196" r="38" fill="url(#padGlow)" opacity=".85"/>
+              <circle cx="324" cy="196" r="28" fill="url(#stickGrad)" stroke="rgba(134,93,255,.45)" stroke-width="2"/>
+              <circle cx="324" cy="196" r="10" fill="#0c111a"/>
+
+              <g>
+                <rect x="140" y="103" width="12" height="34" rx="3.5" fill="#4b5670"/>
+                <rect x="127" y="116" width="38" height="12" rx="3.5" fill="#4b5670"/>
+              </g>
+
+              <g fill="none" stroke="#4b5670" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="368" cy="121" r="9.5" fill="#dfe6f0" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+                <circle cx="391" cy="121" r="9.5" fill="#dfe6f0" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+                <circle cx="379.5" cy="102" r="9.5" fill="#dfe6f0" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+                <circle cx="379.5" cy="140" r="9.5" fill="#dfe6f0" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+                <path d="M379.5 98.5l3 5h-6z"/>
+                <circle cx="391" cy="121" r="4"/>
+                <path d="M376 137l7 7M383 137l-7 7"/>
+                <rect x="364.5" y="117.5" width="7" height="7"/>
+              </g>
+
+              <g fill="#aab4c6">
+                <circle cx="238" cy="164" r="2.4"/><circle cx="248" cy="164" r="2.4"/><circle cx="258" cy="164" r="2.4"/><circle cx="268" cy="164" r="2.4"/><circle cx="278" cy="164" r="2.4"/>
+              </g>
+              <rect x="243" y="174" width="34" height="9" rx="4.5" fill="#c3cede"/>
+            </svg>
+            <div class="status-card"><span class="status-dot"></span><div><strong>Joystick en revisión</strong><small>Diagnóstico · reparación · prueba</small></div></div>
+            <div class="float-badge">🎮 <span>Drift afuera.</span> GG adentro.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicio">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">El servicio</span>
+          <h2>Simple, claro y sin vueltas.</h2>
+          <p>Revisamos el mando, determinamos qué necesita y hacemos la reparación correspondiente. La idea es que entiendas qué se le hizo y por qué.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">◉</div><h3>Diagnóstico</h3><p>Revisamos el comportamiento del joystick para identificar el origen del problema antes de intervenir.</p></article>
+          <article class="card"><div class="icon">⚙</div><h3>Reparación de drift</h3><p>Según el diagnóstico, realizamos el cambio de stick o de potenciómetro indicado para solucionar el drift.</p></article>
+          <article class="card"><div class="icon">✓</div><h3>Prueba final</h3><p>Probamos nuevamente los controles antes de entregártelo para que vuelva al juego listo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fotos">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">DriftZero</span>
+          <h2>Tu mando, otra vez bajo control.</h2>
+          <p>En lugar de fotos de muestra, te mostramos lo que realmente importa: cómo trabajamos para que el joystick vuelva a responder como debe.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card"><span class="work-number">01</span><div class="work-icon">⌕</div><h3>Detectamos</h3><p>Revisamos el stick y sus lecturas para entender exactamente de dónde viene el drift.</p></article>
+          <article class="work-card featured"><span class="work-number">02</span><div class="work-icon">⚙</div><h3>Reparamos</h3><p>Elegimos entre cambio de stick o potenciómetro según lo que necesite tu mando.</p></article>
+          <article class="work-card"><span class="work-number">03</span><div class="work-icon">✓</div><h3>Probamos</h3><p>Antes de entregarlo verificamos los controles para que puedas volver a jugar tranquilo.</p></article>
+        </div>
+        <div class="work-banner"><span>ZERO DRIFT</span><strong>Menos bronca. Más partidas.</strong><small>Servicio especializado para joysticks PS5.</small></div>
+      </div>
+    </section>
+
+    <section class="pricing" id="precios">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Precios</span>
+          <h2>Dos opciones, precios claros.</h2>
+          <p>El valor depende de la reparación que necesite el mando. Antes de realizar el trabajo se confirma el diagnóstico y el presupuesto.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card stick">
+            <span class="tag">Opción 01 · Cambio de stick</span>
+            <h3>Reparación de drift</h3>
+            <div class="price">$70.000 <small>ARS</small></div>
+            <ul class="price-list">
+              <li>Cambio de stick</li>
+              <li>Corrección del drift</li>
+              <li>Prueba final del mando</li>
+              <li>Presupuesto confirmado antes del trabajo</li>
+            </ul>
+            <div class="price-cta"><a class="btn btn-primary" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20consultar%20por%20la%20reparaci%C3%B3n%20con%20cambio%20de%20stick%20de%20mi%20joystick%20PS5." target="_blank" rel="noopener">Consultar por esta opción</a></div>
+          </article>
+          <article class="price-card pot">
+            <span class="tag">Opción 02 · Cambio de potenciómetro</span>
+            <h3>Reparación de drift</h3>
+            <div class="price">$50.000 <small>ARS</small></div>
+            <ul class="price-list">
+              <li>Cambio de potenciómetro</li>
+              <li>Corrección del drift</li>
+              <li>Prueba final del mando</li>
+              <li>Presupuesto confirmado antes del trabajo</li>
+            </ul>
+            <div class="price-cta"><a class="btn btn-secondary" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20consultar%20por%20la%20reparaci%C3%B3n%20con%20cambio%20de%20potenci%C3%B3metro%20de%20mi%20joystick%20PS5." target="_blank" rel="noopener">Consultar por esta opción</a></div>
+          </article>
+        </div>
+        <p class="price-note">El diagnóstico determina cuál de las dos reparaciones corresponde en cada caso.</p>
+      </div>
+    </section>
+
+    <section id="turno">
+      <div class="container turno-grid">
+        <div class="contact-box">
+          <span class="section-kicker">Turnos</span>
+          <h3>Pedí tu turno.</h3>
+          <p>Completá el formulario y se abrirá WhatsApp con tu consulta lista para enviar.</p>
+          <div class="contact-list">
+            <div class="contact-item"><span class="contact-icon">📱</span><div><strong>11-4163-7545</strong><small>WhatsApp y llamadas</small></div></div>
+            <div class="contact-item"><span class="contact-icon">✉️</span><div><strong>tomugonza@gmail.com</strong><small>Consultas y presupuestos</small></div></div>
+            <div class="contact-item"><span class="contact-icon">⏱</span><div><strong>Turnos coordinados</strong><small>Disponibilidad confirmada por WhatsApp</small></div></div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <form id="turnForm">
+            <div class="form-row">
+              <label>Nombre<input id="name" name="name" required placeholder="Tu nombre" /></label>
+              <label>WhatsApp<input id="phone" name="phone" required placeholder="Ej. 11 5555 5555" /></label>
+            </div>
+            <div class="form-row">
+              <label>Modelo<select id="model" name="model" required><option value="">Elegí una opción</option><option>DualSense PS5</option><option>DualSense Edge</option><option>Otro modelo</option></select></label>
+              <label>Problema<select id="problem" name="problem" required><option value="">Elegí una opción</option><option>Drift en stick izquierdo</option><option>Drift en stick derecho</option><option>Drift en ambos sticks</option><option>Otro problema</option></select></label>
+            </div>
+            <label>Fecha preferida<input id="date" name="date" type="date" /></label>
+            <label>Detalle opcional<textarea id="details" name="details" placeholder="Contanos qué hace el joystick. Por ejemplo: la cámara se mueve sola."></textarea></label>
+            <p class="form-note">Al enviar, se abrirá WhatsApp con los datos que completaste.</p>
+            <div class="form-success" id="successBox">Listo. Abriendo WhatsApp…</div>
+            <button class="btn btn-primary" type="submit">💬 Generar pedido de turno</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">FAQ</span>
+          <h2>Preguntas frecuentes</h2>
+          <p>Lo importante, explicado sin tecnicismos innecesarios.</p>
+        </div>
+        <div class="faq">
+          <details><summary>¿Qué es el drift?</summary><p>Es cuando el stick registra movimiento aunque no lo estés tocando. Por eso el personaje o la cámara pueden desplazarse solos.</p></details>
+          <details><summary>¿Tengo que llevar el joystick completo?</summary><p>Sí. Para revisar correctamente el problema necesitamos el mando completo y poder probar su funcionamiento.</p></details>
+          <details><summary>¿Cuánto demora la reparación?</summary><p>El tiempo depende del diagnóstico y de la disponibilidad del momento. Coordinamos el turno y te confirmamos por WhatsApp.</p></details>
+          <details><summary>¿Qué reparación corresponde?</summary><p>Depende del diagnóstico. El servicio puede realizarse con cambio de stick por $70.000 o con cambio de potenciómetro por $50.000.</p></details>
+          <details><summary>¿También reparan otros problemas?</summary><p>Consultanos por WhatsApp indicando qué le pasa al joystick y te confirmamos si podemos tomar ese trabajo.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <div><h2>Que el único que tenga drift sea el rival.</h2><p>Mandanos un mensaje y coordinamos tu reparación.</p></div>
+          <a class="btn btn-whatsapp" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20consultar%20por%20la%20reparaci%C3%B3n%20de%20mi%20joystick%20PS5." target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 DriftZero · Reparación de joysticks · CABA, Buenos Aires</div>
+      <div class="footer-links"><a href="tel:+541141637545">11-4163-7545</a><a href="mailto:tomugonza@gmail.com">tomugonza@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/5491141637545?text=Hola%2C%20quiero%20consultar%20por%20la%20reparaci%C3%B3n%20de%20mi%20joystick%20PS5." target="_blank" rel="noopener" aria-label="Abrir WhatsApp">💬</a>
+
+  <script>
+    const form = document.getElementById('turnForm');
+    const successBox = document.getElementById('successBox');
+    const dateInput = document.getElementById('date');
+
+    const now = new Date();
+    const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+    dateInput.min = localToday;
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const model = String(data.get('model') || '').trim();
+      const problem = String(data.get('problem') || '').trim();
+      const date = String(data.get('date') || '').trim() || 'A coordinar';
+      const details = String(data.get('details') || '').trim() || 'Sin detalle adicional';
+
+      const message = [
+        'Hola, quiero pedir un turno para reparar mi joystick PS5.',
+        '',
+        `Nombre: ${name}`,
+        `Mi WhatsApp: ${phone}`,
+        `Modelo: ${model}`,
+        `Problema: ${problem}`,
+        `Fecha preferida: ${date}`,
+        `Detalle: ${details}`
+      ].join('\n');
+
+      successBox.style.display = 'block';
+      const url = `https://wa.me/5491141637545?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
