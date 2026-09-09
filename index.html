@@ -426,7 +426,7 @@
       background:radial-gradient(circle,rgba(255,106,0,.2),transparent 65%);pointer-events:none
     }
 
-    .pricing{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:860px;margin-inline:auto}
+    .pricing{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1180px;margin-inline:auto}
 
     /* Gaming / experience showcase */
     .gaming-section{
@@ -1363,6 +1363,63 @@
 
 
     /* Condiciones de recepción y reparación */
+
+    /* Forma de pago */
+    .payment-strip{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:stretch;
+      gap:12px;
+      max-width:860px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .payment-step{
+      border:1px solid #2a313b;
+      border-radius:18px;
+      background:#0d1116;
+      padding:18px 19px;
+    }
+    .payment-step small{
+      display:block;
+      color:#8c95a1;
+      font-size:.68rem;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+    .payment-step strong{
+      display:block;
+      font-size:1.08rem;
+      margin-bottom:4px;
+    }
+    .payment-step span{
+      display:block;
+      color:#9fa7b2;
+      font-size:.79rem;
+    }
+    .payment-arrow{
+      display:grid;
+      place-items:center;
+      color:var(--orange);
+      font-size:1.35rem;
+      font-weight:900;
+      padding:0 3px;
+    }
+    .payment-note{
+      max-width:860px;
+      margin:12px auto 0;
+      color:#7f8894;
+      font-size:.76rem;
+      line-height:1.5;
+    }
+    @media (max-width:680px){
+      .payment-strip{grid-template-columns:1fr}
+      .payment-arrow{transform:rotate(90deg);min-height:18px}
+    }
+
     .legal-service{
       position:relative;
     }
@@ -1808,7 +1865,7 @@
             <div class="gaming-foot-icon">DZ</div>
             <div>
               <b>Drift afuera. GG adentro.</b>
-              <span>Analógicos convencionales o upgrade K‑Silver TMR ×2 para DualSense PS5.</span>
+              <span>Analógicos convencionales, TMR estándar o upgrade K‑Silver TMR ×2 para DualSense PS5.</span>
             </div>
           </div>
           <a class="btn btn-primary js-wa"
@@ -1826,7 +1883,7 @@
             <h2>Elegí tu reparación.<br>O pasate a TMR.</h2>
           </div>
           <p>
-            El diagnóstico define qué opción corresponde. Ningún costo adicional se realiza sin tu aprobación previa.
+            El diagnóstico define qué opción corresponde. También podés solicitar servicio urgente con entrega en el día. Ningún costo adicional se realiza sin tu aprobación previa.
           </p>
         </div>
 
@@ -1852,6 +1909,27 @@
             <a class="btn btn-secondary btn-block js-wa" data-message="Hola, quiero consultar por el cambio de módulo analógico de mi DualSense." href="#" rel="noopener">Consultar esta opción</a>
           </article>
 
+          <article class="card price-card">
+            <div class="price-top">
+              <div>
+                <span class="pill">Upgrade magnético</span>
+                <h3 style="margin-top:15px">TMR estándar ×2</h3>
+              </div>
+            </div>
+            <div class="price"><span id="price-tmr-standard">$60.000</span> <small>ARS</small></div>
+            <div class="price-note">Upgrade de ambos sticks con módulos TMR magnéticos estándar.</div>
+            <ul class="featurelist">
+              <li><span class="tick">✓</span> 2 módulos TMR magnéticos</li>
+              <li><span class="tick">✓</span> Tecnología magnética sin contacto en el sensor</li>
+              <li><span class="tick">✓</span> Instalación + calibración individual</li>
+              <li><span class="tick">✓</span> Test de centrado y recorrido</li>
+              <li><span class="tick">✓</span> 6 meses de garantía*</li>
+            </ul>
+            <a class="btn btn-secondary btn-block js-wa"
+               data-message="Hola, quiero consultar por el upgrade TMR estándar de ambos sticks en mi DualSense PS5."
+               href="#" rel="noopener">Quiero TMR estándar</a>
+          </article>
+
           <article class="card price-card premium">
             <div class="price-top">
               <div>
@@ -1859,8 +1937,8 @@
                 <h3 style="margin-top:15px">K‑Silver TMR ×2</h3>
               </div>
             </div>
-            <div class="price"><span id="price-tmr">$60.000</span> <small>ARS</small></div>
-            <div class="price-note">Upgrade de ambos sticks con módulos K‑Silver TMR magnéticos.</div>
+            <div class="price"><span id="price-ksilver">$67.000</span> <small>ARS</small></div>
+            <div class="price-note">Upgrade premium de ambos sticks con módulos K‑Silver TMR magnéticos.</div>
             <ul class="featurelist">
               <li><span class="tick">✓</span> 2 módulos K‑Silver TMR</li>
               <li><span class="tick">✓</span> Tecnología magnética sin contacto en el sensor</li>
@@ -1870,11 +1948,54 @@
             </ul>
             <a class="btn btn-primary btn-block js-wa" data-message="Hola, quiero hacer el upgrade K-Silver TMR de ambos sticks en mi DualSense PS5." href="#" rel="noopener">Quiero K‑Silver TMR</a>
           </article>
+
+          <article class="card price-card">
+            <div class="price-top">
+              <div>
+                <span class="pill">Servicio urgente / fuera de horario</span>
+                <h3 style="margin-top:15px">Prioridad especial</h3>
+              </div>
+            </div>
+            <div class="price"><span id="price-urgent">+$10.000</span> <small>ARS</small></div>
+            <div class="price-note">Adicional sobre el servicio elegido para reparaciones con prioridad especial, entregas en el día o fuera del horario habitual.</div>
+            <ul class="featurelist">
+              <li><span class="tick">✓</span> Entrega en el día un domingo</li>
+              <li><span class="tick">✓</span> Entrega por la noche en días de semana</li>
+              <li><span class="tick">✓</span> Atención o entrega durante el fin de semana</li>
+              <li><span class="tick">✓</span> Misma garantía de 6 meses</li>
+              <li><span class="tick">✓</span> Sujeto a stock, complejidad y disponibilidad</li>
+            </ul>
+            <a class="btn btn-secondary btn-block js-wa"
+               data-message="Hola, necesito una reparación urgente / fuera de horario de mi DualSense. Quiero consultar disponibilidad para entrega en el día, por la noche o durante el fin de semana."
+               href="#" rel="noopener">Consultar urgencia</a>
+          </article>
         </div>
 
         <p class="legal-note">
           * La garantía se aplica a la intervención y a los repuestos instalados. No cubre golpes, líquidos, daños externos o manipulación posterior por terceros.
-          Ajustá esta condición antes de publicar si tu política comercial va a ser diferente.
+          El servicio urgente / fuera de horario aplica, por ejemplo, a entregas en el día un domingo, por la noche en días de semana o durante el fin de semana, y está sujeto a stock, complejidad de la falla y disponibilidad de agenda.
+        </p>
+
+        <div class="payment-strip" aria-label="Forma de pago">
+          <div class="payment-step">
+            <small>01 / Para iniciar</small>
+            <strong>50% de anticipo</strong>
+            <span>Se abona después de aceptar el diagnóstico, el presupuesto y las condiciones del trabajo.</span>
+          </div>
+
+          <div class="payment-arrow" aria-hidden="true">→</div>
+
+          <div class="payment-step">
+            <small>02 / Al finalizar</small>
+            <strong>50% restante</strong>
+            <span>Se abona cuando la reparación está terminada, probada y lista para entregar.</span>
+          </div>
+        </div>
+
+        <p class="payment-note">
+          El anticipo se imputa al precio total del servicio. Si antes de iniciar el trabajo el cliente decide no continuar,
+          cualquier devolución se determina según el estado real del encargo y los costos efectivamente comprometidos,
+          sin establecer pérdidas automáticas contrarias a la normativa de consumo.
         </p>
       </div>
     </section>
@@ -1917,7 +2038,7 @@
             <div class="eyebrow">Comparación rápida</div>
             <h2>¿Qué opción te conviene?</h2>
           </div>
-          <p>Si solo querés resolver la falla, la reparación estándar puede alcanzar. Si buscás un upgrade del sistema analógico, K‑Silver TMR es la opción premium.</p>
+          <p>Si querés resolver la falla, podés ir por analógico convencional. Para un upgrade magnético tenés TMR estándar, y K‑Silver queda como la opción premium.</p>
         </div>
 
         <div class="compare-wrap">
@@ -1925,17 +2046,18 @@
             <thead>
               <tr>
                 <th>Característica</th>
-                <th>Reparación estándar</th>
+                <th>Analógico convencional</th>
+                <th>TMR estándar ×2</th>
                 <th>K‑Silver TMR ×2</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Corrige el drift actual</td><td>✓</td><td>✓</td></tr>
-              <tr><td>Sensor magnético TMR</td><td>—</td><td>✓</td></tr>
-              <tr><td>Se reemplazan ambos sticks</td><td>Según diagnóstico</td><td>✓</td></tr>
-              <tr><td>Calibración final</td><td>✓</td><td>✓</td></tr>
-              <tr><td>Prueba final</td><td>✓</td><td>✓</td></tr>
-              <tr><td>Perfil</td><td>Reparar lo necesario</td><td>Upgrade premium</td></tr>
+              <tr><td>Corrige el drift actual</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Sensor magnético TMR</td><td>—</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Se reemplazan ambos sticks</td><td>Según diagnóstico</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Calibración final</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Prueba final</td><td>✓</td><td>✓</td><td>✓</td></tr>
+              <tr><td>Perfil</td><td>Reparación económica</td><td>Upgrade magnético</td><td>Upgrade premium</td></tr>
             </tbody>
           </table>
         </div>
@@ -2257,6 +2379,7 @@
                 <label for="reviewService">Servicio realizado</label>
                 <select id="reviewService" name="reviewService">
                   <option value="Analógico convencional">Analógico convencional</option>
+                  <option value="TMR estándar x2">TMR estándar ×2</option>
                   <option value="K-Silver TMR x2">K‑Silver TMR ×2</option>
                   <option value="Diagnóstico / consulta">Diagnóstico / consulta</option>
                   <option value="Otro">Otro</option>
@@ -2435,11 +2558,33 @@
             </article>
 
             <article class="legal-item">
-              <span class="legal-num">06 / RESPONSABILIDAD</span>
-              <h3>Sin exclusiones abusivas</h3>
+              <span class="legal-num">06 / MARCAS TÉCNICAS</span>
+              <h3>Señales menores de intervención</h3>
               <p>
-                DriftZero no pretende excluir responsabilidades que la ley imponga por daños atribuibles al servicio.
-                Las exclusiones solo alcanzan hechos no relacionados con la reparación o posteriores a ella.
+                La apertura y manipulación técnica pueden dejar marcas superficiales mínimas y razonablemente inevitables
+                en puntos de apertura, tornillos, encastres o zonas de trabajo. Esto no comprende roturas, rayones profundos,
+                deformaciones ni daños evitables atribuibles a una ejecución defectuosa.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">07 / COMPONENTES</span>
+              <h3>Reparación o reemplazo del componente afectado</h3>
+              <p>
+                Si durante una intervención un componente determinado resulta dañado por una causa atribuible a DriftZero,
+                primero se intentará repararlo sin costo. Si ello no fuera posible, DriftZero asumirá el costo de ese componente
+                y su reemplazo, buscando restituir el mando a una condición equivalente a la previa. Eso no implica automáticamente
+                el valor de un mando completo cuando el daño queda circunscripto a esa pieza.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">08 / RESPONSABILIDAD</span>
+              <h3>Responsabilidad según el daño real</h3>
+              <p>
+                Esta regla se aplica cuando el daño queda circunscripto a un componente individual. Si la reparación o sustitución de
+                esa pieza restituye el equipo, la solución adecuada es asumir el costo de ese componente, no el de un mando completo. Si el
+                perjuicio fuera mayor o no pudiera restituirse el mando, se aplicará la normativa correspondiente según el daño real.
               </p>
             </article>
           </div>
@@ -2447,7 +2592,7 @@
           <div class="legal-actions">
             <p>
               El texto completo explica garantía, fallas preexistentes, autorización de trabajos adicionales,
-              repuestos, pruebas, retiro/entrega y forma de aceptación.
+              repuestos, pruebas, retiro/entrega, forma de pago y aceptación.
             </p>
             <div class="legal-actions-buttons">
               <a class="btn btn-secondary" href="condiciones.html" target="_blank" rel="noopener">Leer condiciones completas</a>
@@ -2550,6 +2695,7 @@
               <select id="service" name="service" required>
                 <option value="No sé todavía / necesito diagnóstico">No sé todavía / diagnóstico</option>
                 <option value="Cambio de módulo analógico">Cambio de módulo analógico</option>
+                <option value="Upgrade TMR estándar x2">Upgrade TMR estándar ×2</option>
                 <option value="Upgrade K-Silver TMR x2">Upgrade K‑Silver TMR ×2</option>
                 <option value="Otra falla">Otra falla</option>
               </select>
@@ -2559,6 +2705,7 @@
               <label for="delivery">Entrega</label>
               <select id="delivery" name="delivery">
                 <option value="Quiero consultar primero">Quiero consultar primero</option>
+                <option value="Urgente / fuera de horario">Urgente / fuera de horario (+$10.000)</option>
                 <option value="Retiro/entrega por mensajería">Retiro/entrega por mensajería</option>
                 <option value="Entrega personal con turno">Entrega personal con turno</option>
               </select>
@@ -2644,7 +2791,9 @@
       whatsapp: "5491141637545",
       prices: {
         stick: "$50.000",
-        tmr: "$60.000"
+        tmrStandard: "$60.000",
+        ksilver: "$67.000",
+        urgent: "+$10.000"
       }
     };
 
@@ -2657,7 +2806,9 @@
     });
 
     document.getElementById("price-stick").textContent = CONFIG.prices.stick;
-    document.getElementById("price-tmr").textContent = CONFIG.prices.tmr;
+    document.getElementById("price-tmr-standard").textContent = CONFIG.prices.tmrStandard;
+    document.getElementById("price-ksilver").textContent = CONFIG.prices.ksilver;
+    document.getElementById("price-urgent").textContent = CONFIG.prices.urgent;
     document.getElementById("year").textContent = new Date().getFullYear();
 
 
@@ -3197,6 +3348,8 @@
         detail ? `Problema: ${detail}` : null,
         "",
         "Leí las Condiciones de recepción y reparación.",
+        "Entiendo que, una vez aceptado el presupuesto, la forma de pago habitual es 50% de anticipo para iniciar y 50% al finalizar, cuando el mando esté probado y listo para entregar.",
+        "Tomo conocimiento de que la intervención técnica puede dejar señales superficiales mínimas e inherentes al desmontaje, sin que ello implique aceptar daños evitables o atribuibles a una ejecución defectuosa.",
         digitalCopy
           ? "Opto por recibir presupuesto y constancias por medios digitales."
           : "No indiqué preferencia por copia digital; puedo solicitar soporte físico."
