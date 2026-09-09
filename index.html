@@ -1365,6 +1365,38 @@
     /* Condiciones de recepción y reparación */
 
     /* Forma de pago */
+
+
+    .promo-old-price{
+      margin-top:2px;
+      color:#8f98a4;
+      font-size:.82rem;
+      font-weight:700;
+    }
+    .promo-old-price span{
+      text-decoration:line-through;
+      text-decoration-thickness:2px;
+    }
+    .promo-difference{
+      display:inline-block;
+      margin:3px 0 12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,106,0,.38);
+      background:rgba(255,106,0,.08);
+      color:#ffb37c;
+      font-size:.72rem;
+      font-weight:900;
+      line-height:1.25;
+    }
+
+    .urgent-card .urgent-pill{
+      display:flex;
+      width:100%;
+      justify-content:center;
+      text-align:center;
+    }
+
     .payment-strip{
       margin-top:24px;
       display:grid;
@@ -1745,12 +1777,12 @@
 
             <div class="hero-info-grid">
               <div class="hero-info-stat">
-                <strong>$50.000</strong>
+                <strong>$40.000</strong>
                 <span>Analógico convencional</span>
               </div>
               <div class="hero-info-stat hero-info-stat-featured">
-                <strong>$60.000</strong>
-                <span>K‑Silver TMR ×2</span>
+                <strong>$54.000</strong>
+                <span>TMR estándar ×2</span>
               </div>
             </div>
 
@@ -1897,7 +1929,7 @@
                 <h3 style="margin-top:15px">Módulo analógico</h3>
               </div>
             </div>
-            <div class="price"><span id="price-stick">$50.000</span> <small>ARS</small></div>
+            <div class="price"><span id="price-stick">$40.000</span> <small>ARS</small></div>
             <div class="price-note">Cuando conviene reemplazar el conjunto analógico completo por uno convencional.</div>
             <ul class="featurelist">
               <li><span class="tick">✓</span> Cambio de módulo</li>
@@ -1916,7 +1948,7 @@
                 <h3 style="margin-top:15px">TMR estándar ×2</h3>
               </div>
             </div>
-            <div class="price"><span id="price-tmr-standard">$60.000</span> <small>ARS</small></div>
+            <div class="price"><span id="price-tmr-standard">$54.000</span> <small>ARS</small></div>
             <div class="price-note">Upgrade de ambos sticks con módulos TMR magnéticos estándar.</div>
             <ul class="featurelist">
               <li><span class="tick">✓</span> 2 módulos TMR magnéticos</li>
@@ -1933,11 +1965,13 @@
           <article class="card price-card premium">
             <div class="price-top">
               <div>
-                <span class="pill pill-hot">Recomendado</span>
+                <span class="pill pill-hot">PROMO K‑SILVER · AHORRÁS $7.000</span>
                 <h3 style="margin-top:15px">K‑Silver TMR ×2</h3>
               </div>
             </div>
-            <div class="price"><span id="price-ksilver">$67.000</span> <small>ARS</small></div>
+            <div class="promo-old-price">Precio habitual <span>$67.000</span></div>
+            <div class="price"><span id="price-ksilver">$60.000</span> <small>ARS</small></div>
+            <div class="promo-difference">Solo $6.000 más que TMR estándar</div>
             <div class="price-note">Upgrade premium de ambos sticks con módulos K‑Silver TMR magnéticos.</div>
             <ul class="featurelist">
               <li><span class="tick">✓</span> 2 módulos K‑Silver TMR</li>
@@ -1946,13 +1980,13 @@
               <li><span class="tick">✓</span> Test de centrado y recorrido</li>
               <li><span class="tick">✓</span> 6 meses de garantía*</li>
             </ul>
-            <a class="btn btn-primary btn-block js-wa" data-message="Hola, quiero hacer el upgrade K-Silver TMR de ambos sticks en mi DualSense PS5." href="#" rel="noopener">Quiero K‑Silver TMR</a>
+            <a class="btn btn-primary btn-block js-wa" data-message="Hola, quiero aprovechar la promoción K-Silver TMR de ambos sticks a $60.000 para mi DualSense PS5." href="#" rel="noopener">Aprovechar promo K‑Silver</a>
           </article>
 
-          <article class="card price-card">
+          <article class="card price-card urgent-card">
             <div class="price-top">
-              <div>
-                <span class="pill">Servicio urgente / fuera de horario</span>
+              <div style="width:100%">
+                <span class="pill urgent-pill">Servicio urgente / fuera de horario</span>
                 <h3 style="margin-top:15px">Prioridad especial</h3>
               </div>
             </div>
@@ -2790,9 +2824,9 @@
     const CONFIG = {
       whatsapp: "5491141637545",
       prices: {
-        stick: "$50.000",
-        tmrStandard: "$60.000",
-        ksilver: "$67.000",
+        stick: "$40.000",
+        tmrStandard: "$54.000",
+        ksilver: "$60.000",
         urgent: "+$10.000"
       }
     };
