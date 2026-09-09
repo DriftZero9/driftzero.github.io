@@ -1361,6 +1361,159 @@
       .star-btn{width:43px;height:43px}
     }
 
+
+    /* Condiciones de recepción y reparación */
+    .legal-service{
+      position:relative;
+    }
+    .legal-card{
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:
+        linear-gradient(145deg,rgba(255,106,0,.045),rgba(255,255,255,.018)),
+        #0d1015;
+      overflow:hidden;
+      box-shadow:0 22px 58px rgba(0,0,0,.22);
+    }
+    .legal-card-top{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:32px;
+      padding:32px;
+      border-bottom:1px solid #252b34;
+    }
+    .legal-card-top p{
+      color:var(--muted);
+      margin-bottom:0;
+      max-width:720px;
+    }
+    .legal-badge{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:17px;
+      border:1px solid rgba(57,217,138,.22);
+      border-radius:17px;
+      background:rgba(57,217,138,.05);
+    }
+    .legal-badge-icon{
+      width:38px;height:38px;
+      flex:0 0 38px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      color:#aef1cb;
+      background:rgba(57,217,138,.08);
+      border:1px solid rgba(57,217,138,.22);
+      font-weight:900;
+    }
+    .legal-badge b{display:block;margin-bottom:3px}
+    .legal-badge span{display:block;color:#9da6b1;font-size:.8rem}
+    .legal-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:0;
+    }
+    .legal-item{
+      padding:25px;
+      border-right:1px solid #252b34;
+      border-bottom:1px solid #252b34;
+    }
+    .legal-item:nth-child(3n){border-right:0}
+    .legal-item:nth-last-child(-n+3){border-bottom:0}
+    .legal-num{
+      display:inline-block;
+      margin-bottom:16px;
+      color:var(--orange);
+      font-size:.72rem;
+      font-weight:950;
+      letter-spacing:.1em;
+    }
+    .legal-item h3{
+      margin-bottom:8px;
+      font-size:1rem;
+    }
+    .legal-item p{
+      margin:0;
+      color:#9fa7b2;
+      font-size:.82rem;
+    }
+    .legal-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:24px 28px;
+      background:rgba(255,255,255,.012);
+    }
+    .legal-actions p{
+      margin:0;
+      color:#858e9a;
+      font-size:.78rem;
+      max-width:680px;
+    }
+    .legal-actions-buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .accept-box{
+      display:grid;
+      gap:11px;
+      margin-top:2px;
+      padding:14px 15px;
+      border:1px solid #2b323d;
+      border-radius:14px;
+      background:#0b0e13;
+    }
+    .accept-line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .accept-line input{
+      width:17px;height:17px;
+      flex:0 0 17px;
+      margin-top:2px;
+      accent-color:var(--orange);
+    }
+    .accept-line label{
+      font-size:.78rem;
+      line-height:1.45;
+      color:#b9c0ca;
+      font-weight:600;
+    }
+    .accept-line a{
+      color:#ff9a52;
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
+
+    @media (max-width:980px){
+      .legal-card-top{grid-template-columns:1fr}
+      .legal-grid{grid-template-columns:1fr 1fr}
+      .legal-item:nth-child(3n){border-right:1px solid #252b34}
+      .legal-item:nth-child(2n){border-right:0}
+      .legal-item:nth-last-child(-n+3){border-bottom:1px solid #252b34}
+      .legal-item:nth-last-child(-n+2){border-bottom:0}
+    }
+    @media (max-width:680px){
+      .legal-card-top{padding:24px 20px}
+      .legal-grid{grid-template-columns:1fr}
+      .legal-item,.legal-item:nth-child(2n),.legal-item:nth-child(3n){
+        border-right:0;
+        border-bottom:1px solid #252b34;
+      }
+      .legal-item:last-child{border-bottom:0}
+      .legal-actions{
+        align-items:stretch;
+        flex-direction:column;
+        padding:20px;
+      }
+      .legal-actions-buttons{justify-content:stretch}
+      .legal-actions-buttons .btn{width:100%}
+    }
+
     .faq{display:grid;gap:10px}
     details{background:#0e1116;border:1px solid var(--line);border-radius:18px;padding:0 20px}
     summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:800;display:flex;justify-content:space-between;gap:16px}
@@ -1486,6 +1639,7 @@
         <a href="#proceso">Proceso</a>
         <a href="#gamepad-lab">Probar mando</a>
         <a href="#opiniones">Opiniones</a>
+        <a href="#condiciones">Condiciones</a>
         <a href="mailto:tomugonza@gmail.com">Email</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -2201,6 +2355,111 @@
       </div>
     </section>
 
+    <section class="section legal-service" id="condiciones">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Condiciones de recepción y reparación</div>
+            <h2>Reglas claras.<br><span class="accent">Para ambas partes.</span></h2>
+          </div>
+          <p>
+            Antes de intervenir un mando, dejamos asentado qué recibimos, qué falla presenta,
+            qué trabajo se autoriza, cuánto cuesta y qué cubre la garantía.
+          </p>
+        </div>
+
+        <div class="legal-card">
+          <div class="legal-card-top">
+            <div>
+              <h3 style="font-size:1.35rem;margin-bottom:10px">Sin renuncias de derechos ni “letra chica”.</h3>
+              <p>
+                Estas condiciones ordenan la recepción y el servicio, pero no eliminan ni reducen derechos
+                que correspondan al consumidor por la Ley 24.240 y demás normativa aplicable.
+              </p>
+            </div>
+
+            <div class="legal-badge">
+              <div class="legal-badge-icon">✓</div>
+              <div>
+                <b>Presupuesto antes de intervenir</b>
+                <span>Los trabajos adicionales se informan y requieren autorización previa.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="legal-grid">
+            <article class="legal-item">
+              <span class="legal-num">01 / RECEPCIÓN</span>
+              <h3>Estado del mando</h3>
+              <p>
+                Se puede registrar modelo, número identificatorio, accesorios entregados y daños visibles.
+                Las marcas o fallas preexistentes quedan documentadas para distinguirlas del trabajo realizado.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">02 / DIAGNÓSTICO</span>
+              <h3>Presupuesto y autorización</h3>
+              <p>
+                DriftZero informa la intervención propuesta, materiales, mano de obra, precio y plazo.
+                No se realizan trabajos o costos adicionales sin informar previamente al cliente.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">03 / REPUESTOS</span>
+              <h3>Materiales adecuados</h3>
+              <p>
+                Se utilizan repuestos nuevos o adecuados al equipo. Si alguna reparación requiriera una
+                condición distinta, debe ser informada y acordada expresamente.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">04 / FALLAS OCULTAS</span>
+              <h3>Líquidos, golpes o reparaciones previas</h3>
+              <p>
+                Si durante la apertura aparecen corrosión, componentes dañados o intervenciones anteriores
+                no detectables al recibir el mando, el trabajo puede pausarse y requerir un nuevo presupuesto.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">05 / GARANTÍA</span>
+              <h3>6 meses sobre la intervención</h3>
+              <p>
+                La garantía comercial cubre el trabajo realizado y los repuestos instalados durante 6 meses.
+                No transforma en garantizadas fallas ajenas a la intervención, ni daños posteriores por golpes,
+                líquidos o manipulación de terceros.
+              </p>
+            </article>
+
+            <article class="legal-item">
+              <span class="legal-num">06 / RESPONSABILIDAD</span>
+              <h3>Sin exclusiones abusivas</h3>
+              <p>
+                DriftZero no pretende excluir responsabilidades que la ley imponga por daños atribuibles al servicio.
+                Las exclusiones solo alcanzan hechos no relacionados con la reparación o posteriores a ella.
+              </p>
+            </article>
+          </div>
+
+          <div class="legal-actions">
+            <p>
+              El texto completo explica garantía, fallas preexistentes, autorización de trabajos adicionales,
+              repuestos, pruebas, retiro/entrega y forma de aceptación.
+            </p>
+            <div class="legal-actions-buttons">
+              <a class="btn btn-secondary" href="condiciones.html" target="_blank" rel="noopener">Leer condiciones completas</a>
+              <a class="btn btn-primary js-wa"
+                 data-message="Hola, leí las condiciones de recepción y reparación de DriftZero y quiero consultar por mi DualSense."
+                 href="#" rel="noopener">Consultar por WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section-tight" id="faq">
       <div class="wrap">
         <div class="section-head">
@@ -2308,6 +2567,25 @@
             <div class="field full">
               <label for="detail">¿Qué hace el joystick?</label>
               <textarea id="detail" name="detail" placeholder="Ej.: el stick izquierdo se mueve solo hacia la derecha..."></textarea>
+            </div>
+
+            <div class="field full">
+              <div class="accept-box">
+                <div class="accept-line">
+                  <input id="termsRead" type="checkbox" required>
+                  <label for="termsRead">
+                    Leí las <a href="condiciones.html" target="_blank" rel="noopener">Condiciones de recepción y reparación</a>.
+                    Entiendo que la aceptación definitiva del trabajo se realiza junto con el presupuesto, antes de intervenir el mando.
+                  </label>
+                </div>
+                <div class="accept-line">
+                  <input id="digitalCopy" type="checkbox">
+                  <label for="digitalCopy">
+                    Opto expresamente por recibir presupuesto, condiciones y constancias del servicio por medios digitales
+                    (WhatsApp o email), sin perjuicio de poder solicitar una copia en soporte físico.
+                  </label>
+                </div>
+              </div>
             </div>
 
             <div class="field full">
@@ -2901,6 +3179,13 @@
       const service = document.getElementById("service").value;
       const delivery = document.getElementById("delivery").value;
       const detail = document.getElementById("detail").value.trim();
+      const termsRead = document.getElementById("termsRead").checked;
+      const digitalCopy = document.getElementById("digitalCopy").checked;
+
+      if (!termsRead) {
+        alert("Para continuar, primero tenés que leer las Condiciones de recepción y reparación.");
+        return;
+      }
 
       const message = [
         "Hola DriftZero, quiero hacer una consulta.",
@@ -2909,7 +3194,12 @@
         phone ? `Mi WhatsApp: ${phone}` : null,
         `Servicio: ${service}`,
         `Entrega: ${delivery}`,
-        detail ? `Problema: ${detail}` : null
+        detail ? `Problema: ${detail}` : null,
+        "",
+        "Leí las Condiciones de recepción y reparación.",
+        digitalCopy
+          ? "Opto por recibir presupuesto y constancias por medios digitales."
+          : "No indiqué preferencia por copia digital; puedo solicitar soporte físico."
       ].filter(Boolean).join("\n");
 
       window.open(waUrl(message), "_blank", "noopener");
