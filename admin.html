@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DriftZero | Moderación</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#090a0d">
+<style>
+:root{--bg:#08090c;--panel:#11151b;--line:#282e37;--text:#f4f6f8;--muted:#9aa2ad;--orange:#ff6a00;--green:#39d98a;--red:#ff5d73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,rgba(255,106,0,.14),transparent 30%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
+.wrap{width:min(calc(100% - 32px),1050px);margin:auto}.top{padding:30px 0;border-bottom:1px solid #202630}.brand{font-weight:950;font-size:1.25rem}.brand span{color:var(--orange)}h1{font-size:clamp(2rem,5vw,4rem);letter-spacing:-.05em;line-height:1;margin:44px 0 12px}p{color:var(--muted)}
+.panel{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.012));padding:24px;margin:24px 0}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+input{width:100%;max-width:430px;background:#090c10;color:#fff;border:1px solid #303742;border-radius:13px;padding:13px 14px}.btn{border:1px solid #303742;border-radius:999px;padding:12px 17px;background:#151922;color:#fff;font-weight:850;cursor:pointer}.btn.orange{background:var(--orange);border-color:var(--orange);color:#111}.btn.green{background:rgba(57,217,138,.12);border-color:rgba(57,217,138,.35);color:#aef1cb}.btn.red{background:rgba(255,93,115,.08);border-color:rgba(255,93,115,.3);color:#ffc2cb}.btn:disabled{opacity:.45;cursor:not-allowed}
+.status{display:none;padding:12px 14px;border-radius:13px;margin-top:13px;font-size:.84rem}.status.show{display:block}.status.ok{background:rgba(57,217,138,.07);border:1px solid rgba(57,217,138,.25);color:#b8f3d2}.status.err{background:rgba(255,93,115,.06);border:1px solid rgba(255,93,115,.25);color:#ffc5ce}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:28px 0 14px}.toolbar h2{margin:0}.reviews{display:grid;gap:13px}.review{border:1px solid var(--line);border-radius:19px;background:#0c1015;padding:19px}.head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.name{font-weight:900}.meta{color:#858e9a;font-size:.75rem;margin-top:3px}.stars{color:#ffad45;white-space:nowrap}.text{white-space:pre-wrap;overflow-wrap:anywhere;color:#d1d5dc;margin:15px 0}.badges{display:flex;gap:7px;flex-wrap:wrap}.badge{border:1px solid #303742;border-radius:999px;padding:5px 9px;color:#aeb5bf;font-size:.68rem}.badge.public{color:#b6f4d1;border-color:rgba(57,217,138,.28)}.badge.private{color:#ffd4a8;border-color:rgba(255,106,0,.3)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:15px;border-top:1px solid #252b34}.empty{text-align:center;padding:46px 20px;color:#838c98}
+.small{font-size:.77rem;color:#7f8894}.hidden{display:none!important}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="top"><div class="wrap"><div class="brand">Drift<span>Zero</span> / Moderación</div></div></div>
+<main class="wrap">
+  <h1>Opiniones pendientes.</h1>
+  <p>Este panel es solo para moderar. Las opiniones públicas aparecen en DriftZero únicamente después de que las apruebes.</p>
+
+  <section class="panel" id="loginPanel">
+    <h2 style="margin-top:0">Ingresar como administrador</h2>
+    <p>Se enviará un enlace de acceso a <strong style="color:#fff">tomugonza@gmail.com</strong>.</p>
+    <div class="row">
+      <button class="btn orange" id="loginBtn">Enviar enlace de acceso</button>
+    </div>
+    <div class="status" id="loginStatus"></div>
+  </section>
+
+  <section id="adminPanel" class="hidden">
+    <div class="toolbar">
+      <div>
+        <h2>Cola de moderación</h2>
+        <div class="small" id="adminUser"></div>
+      </div>
+      <div class="row">
+        <button class="btn" id="refreshBtn">Actualizar</button>
+        <button class="btn" id="logoutBtn">Cerrar sesión</button>
+      </div>
+    </div>
+    <div class="reviews" id="reviewList"></div>
+  </section>
+</main>
+
+<script>
+const SUPABASE_URL = "PEGAR_SUPABASE_URL_AQUI";
+const SUPABASE_PUBLISHABLE_KEY = "PEGAR_SUPABASE_PUBLISHABLE_KEY_AQUI";
+const ADMIN_EMAIL = "tomugonza@gmail.com";
+
+const configured =
+  SUPABASE_URL.startsWith("https://") &&
+  !SUPABASE_URL.includes("PEGAR_") &&
+  SUPABASE_PUBLISHABLE_KEY.length > 20 &&
+  !SUPABASE_PUBLISHABLE_KEY.includes("PEGAR_");
+
+const db = configured
+  ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY)
+  : null;
+
+const loginPanel=document.getElementById("loginPanel");
+const adminPanel=document.getElementById("adminPanel");
+const loginStatus=document.getElementById("loginStatus");
+const reviewList=document.getElementById("reviewList");
+const adminUser=document.getElementById("adminUser");
+
+function status(msg,type="ok"){
+  loginStatus.textContent=msg;
+  loginStatus.className=`status show ${type}`;
+}
+function escText(value){return String(value??"")}
+
+document.getElementById("loginBtn").addEventListener("click",async()=>{
+  if(!db){status("Primero tenés que pegar Project URL y Publishable Key en admin.html.","err");return}
+  const redirectTo=location.href.split("#")[0].split("?")[0];
+  const {error}=await db.auth.signInWithOtp({
+    email:ADMIN_EMAIL,
+    options:{emailRedirectTo:redirectTo,shouldCreateUser:true}
+  });
+  if(error){status(error.message,"err");return}
+  status("Listo. Revisá tu email y abrí el enlace de acceso en este mismo navegador.");
+});
+
+document.getElementById("logoutBtn").addEventListener("click",async()=>{
+  await db.auth.signOut();
+  location.reload();
+});
+document.getElementById("refreshBtn").addEventListener("click",loadReviews);
+
+function reviewCard(r){
+  const article=document.createElement("article");
+  article.className="review";
+
+  const head=document.createElement("div");head.className="head";
+  const left=document.createElement("div");
+  const name=document.createElement("div");name.className="name";name.textContent=r.name||"Anónimo";
+  const meta=document.createElement("div");meta.className="meta";
+  meta.textContent=`${r.service||"Servicio"} · ${new Date(r.created_at).toLocaleString("es-AR")}`;
+  left.append(name,meta);
+  const stars=document.createElement("div");stars.className="stars";
+  stars.textContent="★".repeat(Number(r.rating)||0)+"☆".repeat(5-(Number(r.rating)||0));
+  head.append(left,stars);
+
+  const text=document.createElement("div");text.className="text";text.textContent=r.review_text||"";
+
+  const badges=document.createElement("div");badges.className="badges";
+  const permission=document.createElement("span");
+  permission.className=`badge ${r.public_permission?"public":"private"}`;
+  permission.textContent=r.public_permission?"✓ Autoriza publicación":"Privada / no publicar";
+  badges.append(permission);
+
+  if(r.recommend){
+    const rec=document.createElement("span");rec.className="badge";rec.textContent=`Recomienda: ${r.recommend}`;badges.append(rec);
+  }
+  (r.tags||[]).slice(0,4).forEach(t=>{
+    const b=document.createElement("span");b.className="badge";b.textContent=t;badges.append(b);
+  });
+
+  const actions=document.createElement("div");actions.className="actions";
+  const approve=document.createElement("button");approve.className="btn green";approve.textContent="Aprobar y publicar";
+  approve.disabled=!r.public_permission;
+  approve.addEventListener("click",()=>moderate(r.id,{approved:true,reviewed:true}));
+
+  const archive=document.createElement("button");archive.className="btn";archive.textContent="Archivar / no publicar";
+  archive.addEventListener("click",()=>moderate(r.id,{approved:false,reviewed:true}));
+
+  const del=document.createElement("button");del.className="btn red";del.textContent="Eliminar spam";
+  del.addEventListener("click",()=>deleteReview(r.id));
+
+  actions.append(approve,archive,del);
+  article.append(head,text,badges,actions);
+  return article;
+}
+
+async function loadReviews(){
+  reviewList.innerHTML='<div class="empty">Cargando…</div>';
+  const {data,error}=await db.from("reviews").select("*").eq("reviewed",false).order("created_at",{ascending:true});
+  if(error){reviewList.innerHTML=`<div class="empty">${escText(error.message)}</div>`;return}
+  reviewList.replaceChildren();
+  if(!data?.length){reviewList.innerHTML='<div class="empty">No hay opiniones pendientes.</div>';return}
+  data.forEach(r=>reviewList.append(reviewCard(r)));
+}
+
+async function moderate(id,values){
+  const {error}=await db.from("reviews").update(values).eq("id",id);
+  if(error){alert(error.message);return}
+  loadReviews();
+}
+async function deleteReview(id){
+  if(!confirm("¿Eliminar esta opinión? Esta acción no se puede deshacer."))return;
+  const {error}=await db.from("reviews").delete().eq("id",id);
+  if(error){alert(error.message);return}
+  loadReviews();
+}
+
+async function boot(){
+  if(!db){status("Falta configurar Supabase en este archivo.","err");return}
+  const {data:{session}}=await db.auth.getSession();
+  const email=session?.user?.email?.toLowerCase();
+  if(email===ADMIN_EMAIL){
+    loginPanel.classList.add("hidden");
+    adminPanel.classList.remove("hidden");
+    adminUser.textContent=`Sesión: ${session.user.email}`;
+    loadReviews();
+  }else if(session){
+    await db.auth.signOut();
+    status("Esta cuenta no está autorizada para moderar.","err");
+  }
+}
+db?.auth.onAuthStateChange((_event,session)=>{
+  if(session?.user?.email?.toLowerCase()===ADMIN_EMAIL) boot();
+});
+boot();
+</script>
+</body>
+</html>
